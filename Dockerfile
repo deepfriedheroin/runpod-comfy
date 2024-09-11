@@ -36,7 +36,7 @@ RUN chmod +x /start.sh /pre_start.sh
 # NGINX configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy README
-COPY ./README.md /usr/share/nginx/html/README.md
+# # Copy README
+# COPY ./README.md /usr/share/nginx/html/README.md
 
 CMD ["/start.sh"]

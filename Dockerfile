@@ -23,10 +23,14 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git /workspace/ComfyUI
 
 WORKDIR /workspace/ComfyUI
 
+# Install PyTorch
+RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121 || (echo "PyTorch installation failed" && exit 1)
+
 # Install ComfyUI dependencies
-RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121 && \
-    pip install -r requirements.txt && \
-    pip install xformers
+RUN pip install -r requirements.txt || (echo "ComfyUI dependencies installation failed" && exit 1)
+
+# Install xformers
+RUN pip install xformers || (echo "xformers installation failed" && exit 1)
 
 # Copy start script and pre-start script
 COPY start.sh /start.sh

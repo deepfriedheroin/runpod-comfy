@@ -58,6 +58,8 @@ jobs:
       run: |
         docker run --rm ${{ steps.meta.outputs.tags }} python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
         docker run --rm ${{ steps.meta.outputs.tags }} python -c "import xformers; print(f'xformers version: {xformers.__version__}')"
+        docker run --rm ${{ steps.meta.outputs.tags }} jupyter --version
+        docker run --rm ${{ steps.meta.outputs.tags }} code-server --version
         docker run --rm ${{ steps.meta.outputs.tags }} python -c "import os; print(f'ComfyUI-Manager installed: {os.path.exists(\"/workspace/ComfyUI/custom_nodes/ComfyUI-Manager\")}')"
 
     - name: Build and push

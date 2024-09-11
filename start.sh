@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Source conda
-source /root/miniconda3/etc/profile.d/conda.sh
+# Start SSH service
+/usr/sbin/sshd
 
-# Activate comfy environment
-conda activate comfy
+# Start Jupyter Lab
+jupyter lab --ip=0.0.0.0 --allow-root --no-browser &
+
+# Start code-server
+code-server --auth none --bind-addr 0.0.0.0:8080 &
 
 # Start NGINX
 nginx
